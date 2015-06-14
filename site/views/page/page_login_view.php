@@ -13,6 +13,16 @@
 							<div class="space-6"></div>
 
 							<div class="position-relative">
+								<? if(isset($message)&&!empty($message)){?>
+									<div class="alert alert-success">
+									 <? foreach($message as $k=>$v){?>
+											<strong>
+												<i class="ace-icon fa fa-check"></i>
+											</strong>
+										<? echo $v."<br/>";
+										}?>
+									</div>
+								<?}?>
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
 										<div class="widget-main">

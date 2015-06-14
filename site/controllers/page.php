@@ -3,6 +3,7 @@ class Page extends Controller{
 	protected $_templates;
 	function Page(){
 		parent::Controller();
+		@session_start();
 		$this->load->model('common_model','common');
 	}
 	
