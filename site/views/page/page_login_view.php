@@ -11,7 +11,10 @@
 							</div> -->
 
 							<div class="space-6"></div>
-
+								<?php
+								$attributes = array('class' => 'form-horizontal', 'role' => 'form' , 'enctype'=>"multipart/form-data" ,"autocomplete"=>"off");
+								echo form_open(uri_string(), $attributes);
+								?>
 							<div class="position-relative">
 								<? if(isset($message)&&!empty($message)){?>
 									<div class="alert alert-success">
@@ -37,14 +40,14 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="Username" />
+															<input name ="lb_username" type="text" class="form-control" placeholder="Username" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="Password" />
+															<input name ="lb_password" type="password" class="form-control" placeholder="Password" />
 															<i class="ace-icon fa fa-lock"></i>
 														</span>
 													</label>
@@ -56,8 +59,8 @@
 															<input type="checkbox" class="ace" />
 															<span class="lbl"> Remember Me</span>
 														</label>
-
-														<button onclick="location='dashboard.html'" type="button" class="width-35 pull-right btn btn-sm btn-primary">
+														<input type="hidden" name="submit" value=""/>
+														<button  type="submit" class="width-35 pull-right btn btn-sm btn-primary">
 															<i class="ace-icon fa fa-key"></i>
 															<span class="bigger-110">Login</span>
 														</button>
@@ -74,7 +77,8 @@
 								</div><!-- /.login-box -->
 
 								</div><!-- /.position-relative -->
-
+								
+								<?=form_close()?>
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
