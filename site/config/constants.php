@@ -38,7 +38,7 @@ define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
 
 // Define Ajax Request
 define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
-define('SESSIONMB', isset($_SESSION['id_member'])&&$_SESSION['id_member']?$_SESSION['id_member']:-1);
+define('SESSIONUSER', isset($_SESSION['id_user'])?$_SESSION['id_user']:-1);
 
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

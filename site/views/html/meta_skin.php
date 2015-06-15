@@ -66,6 +66,15 @@
 		<script type="text/javascript">
 		 var base_url = "<?=base_url()?>";
 		</script>
+		<script src="<?php echo base_url()?>templates/assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url()?>templates/assets/bootstrap/3.2.0/js/bootstrap-paginator.js"></script>
 		<script src="<?=base_url()?>templates/js/wg/jquery.tmpl.min.js"></script>
 		<script src="<?=base_url()?>templates/js/wg/modernizr.custom.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>templates/js/JSCal2-1.7/src/js/jscal2.js"></script>
+		<script type="text/javascript" src="<?=base_url()?>templates/js/JSCal2-1.7/src/js/lang/en.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=base_url()?>templates/js/JSCal2-1.7/src/css/jscal2.css" />
+		<link rel="stylesheet" type="text/css" href="<?=base_url()?>templates/js/JSCal2-1.7/src/css/border-radius.css" />
+		<link rel="stylesheet" type="text/css" href="<?=base_url()?>templates/js/JSCal2-1.7/src/css/steel/steel.css" />
+		<link rel="stylesheet" type="text/css" href="<?=base_url()?>templates/js/jquery-ui/themes/base/jquery-ui.css" />
+		<script src="<?=base_url()?>templates/js/jquery-ui/ui/jquery-ui.js"></script>
 		<script src="<?php echo base_url()?>templates/js/wg/common.js"></script>

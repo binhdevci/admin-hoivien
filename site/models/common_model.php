@@ -77,5 +77,56 @@ class Common_model extends Model{
             return false;
         }
     }
+	function delete_data($table_name,$arr_where){
+        try{
+            $rs=$this->db->delete($table_name,$arr_where);
+            return $rs;
+        }catch(Exception $ex){
+            return false;
+        }
+    }
+	
+	function check_duplicate($lb_table,$wh_field,$wh_value,$lb_primary_key,$val_primary_key=0){
+		try{
+			$this->db->where($wh_field,$wh_value);			
+			if($val_primary_key>0){
+				$this->db->where($lb_primary_key.' != '.$val_primary_key);
+			}
+			$query=$this->db->get($lb_table);
+			if(count($query->result())>0)
+				return false;
+        }catch(Exception $ex){
+            return false;
+        }
+		return true;
+	}
+	function get_max_member(){
+		$sql="
+		select m.id_member,m.cd_member	from tt_member m
+		where
+		m.id_member=( select max(id_member) from tt_member)";
+		$query = $this->db->query($sql);
+		return $query->row();
+	}
+	function get_friend_search($lb_name='',$per_page =10){
+		try{
+			$sql ="select *
+					from tt_member m
+					where 1=1 
+					and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
+					limit ".$per_page;		
+			$query = $this->db->query($sql);
+			return $query->result();
+		}catch(Exception $ex){
+			return false;
+		}
+	}
+	function get_person_member($id_member=0){
+		$sql="	select m.id_member,m.cd_member,m.lb_fullname	from tt_member m
+		where
+		m.id_member=?";
+		$query = $this->db->query($sql,array($id_member));
+		return $query->row();
+	}
 }
 ?>

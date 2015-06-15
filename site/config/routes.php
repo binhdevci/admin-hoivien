@@ -43,16 +43,26 @@ $route['default_controller'] = "page";
 
 $route['dashboard.html'] = "page/dashboard";
 $route['log-out.html'] = "page/log_out";
-$route['member.html'] = "member";
 $route['changepass.html'] = "member/changepass";
+/* route member */
+$route['member.html'] = "member";
+$route['member-save.html'] = "member/save";
+$route['member-(:num).html'] = "member/edit/$1";
+$route['member-delete.html'] = "member/del";
+$route['load-grid-member.html'] = "member/load_grid";
+$route['load-grid-member-paging.html'] = "member/load_grid_paging";
+$route['find-person.html(:any)'] = "member/find_member";
+/* route payment */
 $route['payment.html'] = "payment";
+/*load grid user*/
 $route['user.html'] = "user";
-$route['thien-tam-(:any).html'] = "page/item/$1";
-$route['thien-tam-(:any).html(:any)'] = "page/item/$1";
+$route['user-save.html'] = "user/save";
+$route['user-(:num).html'] = "user/edit/$1";
+$route['user-delete.html'] = "user/del";
+$route['load-grid-user.html'] = "user/load_grid";
+$route['load-grid-user-paging.html'] = "user/load_grid_paging";
+/*end load grid user*/
 $route['scaffolding_trigger'] = "";
-//news
-
-
 $route['(:any)'] = "page"  ;
 
 

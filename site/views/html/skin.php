@@ -48,7 +48,7 @@
 		</div><!-- /.main-container -->
 
 		
-		<script src="<?php echo base_url()?>templates/assets/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+		
 
 		<!-- page specific plugin scripts -->
 

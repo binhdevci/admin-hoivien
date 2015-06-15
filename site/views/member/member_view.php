@@ -18,15 +18,6 @@
 							</button>
 
 					</div>
-					<!-- <div class="nav-search" id="nav-search">
-						<form class="form-search">
-							<span class="input-icon">
-								<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-								<i class="ace-icon fa fa-search nav-search-icon"></i>
-							</span>
-						</form>
-					</div> -->
-					<!-- /.nav-search -->
 				</div>
 
 				<div class="page-content">
@@ -34,7 +25,7 @@
 						<div class="page-content-area">
 						<div class="row">
 							<form class="form-horizontal" role="form" onsubmit="return false;">
-							<div class="col-xs-12 target" style ="display:none;">
+							<div class="col-xs-12 target" >
 								<!-- PAGE CONTENT BEGINS -->
 								<div class="row">
 									<div class="space-10"></div>
@@ -42,51 +33,51 @@
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Mã số</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_name" type="text" id="form-field-1" placeholder="TT150608001" class="col-xs-6 col-sm-10" disabled="disabled" />
+												<input id="cd_member" type="text"  class="col-xs-6 col-sm-10" disabled="disabled" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Họ và tên</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_name" type="text" id="form-field-1" placeholder="Họ và tên" class="col-xs-6 col-sm-10" />
+												<input id="lb_fullname" type="text"  placeholder="Họ và tên" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Ngày sinh</label>
-											<div class="col-sm-8 col-xs-9">
-												<input name="nb_employee" type="text" id="form-field-1" placeholder="Ngày sinh" class="col-xs-6 col-sm-10" />
+											<div class="col-sm-4 col-xs-9">
+												<input id="lb_birthday" type="text"  placeholder="Ngày sinh" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1">Địa chỉ thường trú</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_password" type="text" id="form-field-1" placeholder="Thường trú tại..." class="col-xs-6 col-sm-10" />
+												<input id="lb_address_resident" type="text"  placeholder="Thường trú tại..." class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1">Địa chỉ tạm trú</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_password" type="text" id="form-field-1" placeholder="Tạm trú tại..." class="col-xs-6 col-sm-10" />
+												<input id="lb_address_staying" type="text"  placeholder="Tạm trú tại..." class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1">Điện thoại</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_password" type="text" id="form-field-1" placeholder="Điện thoại" class="col-xs-6 col-sm-10" />
+												<input id="lb_phone" type="text"  placeholder="Điện thoại" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1">Email</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_password" type="text" id="form-field-1" placeholder="Email" class="col-xs-6 col-sm-10" />
+												<input id="lb_email" type="text"  placeholder="Email" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Trạng thái</label>
 											<div class="checkbox">
 												<label>
-													<input type="checkbox" class="ace" name="form-field-checkbox">
+													<input id="bl_active" type="checkbox" class="ace" name="form-field-checkbox" value="1">
 													<span class="lbl"> </span>
 												</label>
 											</div>
@@ -94,42 +85,37 @@
 									</div>
 									
 									<div class="col-sm-6 col-xs-12">
-											<div class="form-group">
-												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Hình đại diện</label>
-												<div class="form-group">
-													<div class="col-xs-6 col-sm-6">
-														<input type="file" id="id-input-file-2" />
-													</div>
-												</div>
-											</div>
+											
 											<div class="form-group">
 												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> CMND</label>
 												<div class="col-sm-8 col-xs-9">
-													<input name="lb_first_name" type="text" id="form-field-1" placeholder="Số CMND" class="col-xs-6 col-sm-10" />
+													<input id="lb_id_card" type="text"  placeholder="Số CMND" class="col-xs-6 col-sm-10" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Ngày cấp</label>
-												<div class="col-sm-8 col-xs-9">
-													<input name="lb_first_name" type="text" id="form-field-1" placeholder="Ngày cấp" class="col-xs-6 col-sm-10" />
+												<div class="col-sm-4 col-xs-9">
+													<input id="dt_range" type="text"  placeholder="Ngày cấp" class="col-xs-6 col-sm-10" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Nơi cấp</label>
 												<div class="col-sm-8 col-xs-9">
-													<input name="lb_first_name" type="text" id="form-field-1" placeholder="Nơi cấp" class="col-xs-6 col-sm-10" />
+													<input id="lb_place_of_issue" type="text"  placeholder="Nơi cấp" class="col-xs-6 col-sm-10" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Người giới thiệu</label>
 												<div class="col-sm-8 col-xs-9">
-													<input name="lb_first_name" type="text" id="form-field-1" placeholder="Selectbox cho phép search" class="col-xs-6 col-sm-10" />
+													<input id="lb_person_introduce" type="text"  placeholder="Gõ để tìm kiếm" class="col-xs-6 col-sm-10" />
+													<input id="id_person_introduce" type="hidden" />
 												</div>
 											</div>
 											<div class="form-group">
 												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Người chỉ định</label>
 												<div class="col-sm-8 col-xs-9">
-													<input name="lb_first_name" type="text" id="form-field-1" placeholder="Selectbox cho phép search" class="col-xs-6 col-sm-10" />
+													<input id="lb_person_assign" type="text" placeholder="Gõ để tìm kiếm" class="col-xs-6 col-sm-10" />
+													<input id="id_person_assign" type="hidden" />
 												</div>
 											</div>
 									</div>
@@ -148,25 +134,25 @@
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Tên chủ tài khoản</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Tên chủ tài khoản" class="col-xs-6 col-sm-10" />
+												<input id="lb_name_account_1" type="text"  placeholder="Tên chủ tài khoản" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Số tài khoản</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Số tài khoản" class="col-xs-6 col-sm-10" />
+												<input id="lb_number_account_1" type="text"  placeholder="Số tài khoản" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Ngân hàng</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Ngân hàng" class="col-xs-6 col-sm-10" />
+												<input id="lb_name_bank_1" type="text"  placeholder="Ngân hàng" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Chi nhánh</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Chi nhánh" class="col-xs-6 col-sm-10" />
+												<input id="lb_bank_branch_1" type="text"  placeholder="Chi nhánh" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 									</div>
@@ -175,47 +161,49 @@
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Tên chủ tài khoản</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Tên chủ tài khoản" class="col-xs-6 col-sm-10" />
+												<input id="lb_name_account_2" type="text"  placeholder="Tên chủ tài khoản" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Số tài khoản</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Số tài khoản" class="col-xs-6 col-sm-10" />
+												<input id="lb_number_account_2" type="text"  placeholder="Số tài khoản" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Ngân hàng</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Ngân hàng" class="col-xs-6 col-sm-10" />
+												<input id="lb_name_bank_2" type="text"  placeholder="Ngân hàng" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Chi nhánh</label>
 											<div class="col-sm-8 col-xs-9">
-												<input name="lb_first_name" type="text" id="form-field-1" placeholder="Chi nhánh" class="col-xs-6 col-sm-10" />
+												<input id="lb_bank_branch_2" type="text"  placeholder="Chi nhánh" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
 									</div>
 								</div>
 								<!--//End bank account-->
 								<div class="space-10"></div>
+								<input id="page_current" type="hidden" value="1" >
+								<input id="id_member" type="hidden" value="0" >
 								<div class="row overw-style">
 										<center>
 										<p class="float-right">
-											<button class="btn btn-white btn-default btn-bold">
+											<button class="btn btn-white btn-default btn-bold" onclick="common.save_member();">
 												<i class="ace-icon fa fa-save bigger-120 orange"></i>
 												Lưu
 											</button>
-											<button class="btn btn-white btn-default btn-bold">
+											<button class="btn btn-white btn-default btn-bold" onclick="common.load_grid_member_paging(1);">
 												<i class="ace-icon fa fa-search bigger-120 orange"></i>
 												Tìm kiếm
 											</button>
-											<button class="btn btn-white btn-default btn-bold">
+											<button class="btn btn-white btn-default btn-bold" onclick="common.delete_member_edit();">
 												<i class="ace-icon fa fa-trash-o bigger-120 orange"></i>
 												Xóa
 											</button>
-											<button class="btn btn-white btn-default btn-bold">
+											<button class="btn btn-white btn-default btn-bold" onclick="common.reset_form_member();	common.load_grid_member(true);">
 												<i class="ace-icon fa fa-undo bigger-120 orange"></i>
 												Làm mới
 											</button>
@@ -247,7 +235,7 @@
 													<th>Mã số</th>
 													<th>Họ tên</th>
 													<th class="hidden-480">Người giới thiệu</th>
-													<th class="hidden-480">
+													<th >
 														Điện thoại
 													</th>
 													<th class="hidden-480">
@@ -257,177 +245,14 @@
 												</tr>
 											</thead>
 
-											<tbody>
-												<tr>
-													<td class="center">
-														<label class="position-relative">
-															<input type="checkbox" class="ace">
-															<span class="lbl"></span>
-														</label>
-													</td>
-
-													<td>
-														TT150608001
-													</td>
-													<td><a href="#">Võ Trương Hoàng Đông</a></td>
-													<td class="hidden-480">Thiện Tâm</td>
-													<td>0909 888 888</td>
-													<td>Hoạt động</td>
-
-													<td>
-														<div class="hidden-sm hidden-xs btn-group">
-															<button class="btn btn-xs btn-success">
-																<i class="ace-icon fa fa-check bigger-120"></i>
-															</button>
-
-															<button class="btn btn-xs btn-info">
-																<i class="ace-icon fa fa-pencil bigger-120"></i>
-															</button>
-
-															<button class="btn btn-xs btn-danger">
-																<i class="ace-icon fa fa-trash-o bigger-120"></i>
-															</button>
-
-															<button class="btn btn-xs btn-warning">
-																<i class="ace-icon fa fa-flag bigger-120"></i>
-															</button>
-														</div>
-
-														<div class="hidden-md hidden-lg">
-															<div class="inline position-relative">
-																<button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
-																	<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-																</button>
-
-																<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																	<li>
-																		<a title="" data-rel="tooltip" class="tooltip-info" href="#" data-original-title="View">
-																			<span class="blue">
-																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																			</span>
-																		</a>
-																	</li>
-
-																	<li>
-																		<a title="" data-rel="tooltip" class="tooltip-success" href="#" data-original-title="Edit">
-																			<span class="green">
-																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																			</span>
-																		</a>
-																	</li>
-
-																	<li>
-																		<a title="" data-rel="tooltip" class="tooltip-error" href="#" data-original-title="Delete">
-																			<span class="red">
-																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																			</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</td>
-												</tr>
-
-												<tr>
-													<td class="center">
-														<label class="position-relative">
-															<input type="checkbox" class="ace">
-															<span class="lbl"></span>
-														</label>
-													</td>
-
-													<td>
-														TT150608002
-													</td>
-													<td><a href="#">Nguyễn Đức Trung</a></td>
-													<td class="hidden-480">Thiện Tâm</td>
-													<td>0919 888 888</td>
-													<td>Hoạt động</td>
-													<td>
-														<div class="hidden-sm hidden-xs btn-group">
-															<button class="btn btn-xs btn-success">
-																<i class="ace-icon fa fa-check bigger-120"></i>
-															</button>
-
-															<button class="btn btn-xs btn-info">
-																<i class="ace-icon fa fa-pencil bigger-120"></i>
-															</button>
-
-															<button class="btn btn-xs btn-danger">
-																<i class="ace-icon fa fa-trash-o bigger-120"></i>
-															</button>
-
-															<button class="btn btn-xs btn-warning">
-																<i class="ace-icon fa fa-flag bigger-120"></i>
-															</button>
-														</div>
-
-														<div class="hidden-md hidden-lg">
-															<div class="inline position-relative">
-																<button data-position="auto" data-toggle="dropdown" class="btn btn-minier btn-primary dropdown-toggle">
-																	<i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-																</button>
-
-																<ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																	<li>
-																		<a title="" data-rel="tooltip" class="tooltip-info" href="#" data-original-title="View">
-																			<span class="blue">
-																				<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																			</span>
-																		</a>
-																	</li>
-
-																	<li>
-																		<a title="" data-rel="tooltip" class="tooltip-success" href="#" data-original-title="Edit">
-																			<span class="green">
-																				<i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																			</span>
-																		</a>
-																	</li>
-
-																	<li>
-																		<a title="" data-rel="tooltip" class="tooltip-error" href="#" data-original-title="Delete">
-																			<span class="red">
-																				<i class="ace-icon fa fa-trash-o bigger-120"></i>
-																			</span>
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</td>
-												</tr>
-												
+											<tbody class="member-grid">
+												<script>
+													common.load_grid_member(true);
+												</script>
 											</tbody>
 										</table>
 									</div><!-- /.span -->
-									<div class="col-xs-12">
-									<ul class="pagination pull-right no-margin">
-										<li class="prev disabled">
-											<a href="#">
-												<i class="ace-icon fa fa-angle-double-left"></i>
-											</a>
-										</li>
-
-										<li class="active">
-											<a href="#">1</a>
-										</li>
-
-										<li>
-											<a href="#">2</a>
-										</li>
-
-										<li>
-											<a href="#">3</a>
-										</li>
-
-										<li class="next">
-											<a href="#">
-												<i class="ace-icon fa fa-angle-double-right"></i>
-											</a>
-										</li>
-									</ul>
+									<div class="col-xs-12"  id="paging-form">
 									</div>		
 								</div>
 								<!-- PAGE CONTENT ENDS -->
@@ -437,19 +262,57 @@
 					</fieldset>	
 				</div><!-- /.page-content -->
 			<!-- inline scripts related to this page -->
-		<script type="text/javascript">
-			$('#id-input-file-1 , #id-input-file-2').ace_file_input({
-					no_file:'No File ...',
-					btn_choose:'Chọn',
-					btn_change:'Change',
-					droppable:false,
-					onchange:null,
-					thumbnail:false //| true | large
-					//whitelist:'gif|png|jpg|jpeg'
-					//blacklist:'exe|php'
-					//onchange:''
-					//
-				});
-				//pre-show a file name, for example a previously selected file
-				//$('#id-input-file-1').ace_file_input('show_file_list', ['myfile.txt'])
-		</script>
+<script id="member-grid" type="text/x-jquery-tmpl">
+	<tr>
+	<td class="center">
+		<label class="position-relative">
+			<input type="checkbox" class="ace">
+			<span class="lbl"></span>
+		</label>
+	</td>
+
+	<td>
+		${cd_member}
+	</td>
+	<td><a href="javascript:;;">${lb_fullname}</a></td>
+	<td class="hidden-480">${lb_person_introduce}</td>
+	<td>${lb_phone}</td>
+	<td>{{if $.trim(bl_active)==1}} Được truy cập{{else}} Đã khóa{{/if}}</td>
+
+	<td>
+		<div class=" btn-group">
+			<button class="btn btn-xs btn-info" onclick="common.load_member_detail(${id_member})">
+					<i class="ace-icon fa fa-pencil bigger-120"></i>
+				</button>
+				<button class="btn btn-xs btn-danger" onclick="common.delete_member(${id_member})" >
+					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+				</button>
+		</div>
+	</td>
+</tr>
+
+
+</script>
+ <script type="text/javascript">
+										
+									 
+	  var cal = Calendar.setup({
+		onSelect: function(cal) { cal.hide();}
+		});
+		cal.manageFields("lb_birthday", "lb_birthday",'%Y-%m-%d');
+		cal.manageFields("dt_range", "dt_range",'%Y-%m-%d');
+
+  </script>
+	  <script>
+	
+	$(function() {
+		common.find_info_person_introduce();
+		common.find_info_person_assign();
+	});
+	
+</script>
+<script id="item_member" type="text/x-jquery-tmpl"> 
+	<span>
+		${cd_member}-${lb_fullname}
+	</span>
+</script>
