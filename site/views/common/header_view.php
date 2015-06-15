@@ -30,7 +30,11 @@
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" src="<?php echo base_url()?>templates/assets/avatars/user.jpg" alt="Jason's Photo" />
 								<span class="user-info" style="top: 14px;">
-									<small>Administrator</small>
+									<small><?
+									if(isset($_SESSION['id_user'])&&$_SESSION['id_user']>0){
+										echo $_SESSION['lb_fullname'];
+									}
+								?></small>
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>
@@ -39,7 +43,7 @@
 							<ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 								
 								<li>
-									<a href="#">
+									<a href="<?=base_url()?>log-out.html">
 										<i class="ace-icon fa fa-power-off"></i>
 										Logout
 									</a>

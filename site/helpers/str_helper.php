@@ -85,11 +85,7 @@ function url_ri(){
 	return $_SERVER["REQUEST_URI"];
 }
 
-/**
-* @author binh ngo
-* @method get current url
-* @date 15/10/2013
-**/
+
 function cur_page_url() {
  $pageURL = 'http';
  if (isset($_SERVER["HTTPS"])&&$_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
@@ -102,40 +98,6 @@ function cur_page_url() {
  return $pageURL;
 }
 
-function get_news($lb_alias){
-	$CI= & get_instance();
-	$rs = $CI->common->get_news_alias($lb_alias);
-	return $rs;
-}
-function get_news_categoty($lb_alias){
-	$CI= & get_instance();
-	$rs = $CI->common->get_all_news_with_category($lb_alias);
-	return $rs;
-}
-function get_news_relative($lb_string_id_news=''){
-	$CI= & get_instance();
-	$arr=explode(',',$lb_string_id_news);
-	$rs=array();
-	if(count($arr)>0){
-		$rs = $CI->common->get_data_str('pl_news','id_news',$arr);
-	}
-	return $rs;
-}
-function get_menu_item(){
-	$CI= & get_instance();
-	$rs = $CI->common->get_menu_item();
-	return $rs;
-}
-function get_news_cate($id_category_news){
-	$CI= & get_instance();
-	$rs = $CI->common->get_news_cate($id_category_news);
-	return $rs;
-}
-function get_categoty(){
-	$CI= & get_instance();
-	$rs = $CI->common->get_all_category();
-	return $rs;
-}
 function  build_config_paging($url,$total_rows){
 		$config['base_url'] =$url;
 		$config['total_rows'] = $total_rows; // get no of news in my database
@@ -183,4 +145,9 @@ function  get_news_common($lb_alias){
 	$rs = $CI->common->get_image_slide_home();
 	return $rs;
  }
+ function formatInputStr($str){
+	$str=stripslashes($str);
+	$str=addslashes($str);
+	return $str;
+}
 ?>

@@ -42,6 +42,7 @@
 $route['default_controller'] = "page";
 
 $route['dashboard.html'] = "page/dashboard";
+$route['log-out.html'] = "page/log_out";
 $route['member.html'] = "member";
 $route['changepass.html'] = "member/changepass";
 $route['payment.html'] = "payment";

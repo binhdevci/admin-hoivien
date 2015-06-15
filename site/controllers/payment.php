@@ -3,6 +3,8 @@ class Payment extends Controller{
 	protected $_templates;
 	function Payment(){
 		parent::Controller();
+		@session_start();
+		$this->pre_message = "";
 		$this->load->model('common_model','common');
 	}
 	
