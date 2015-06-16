@@ -26,10 +26,63 @@ class Member extends Controller{
 	
 	
 	function changepass(){
-		$data = array();
+		if(isset($_SESSION['id_user'])&&$_SESSION['id_user']>0){
+			if(isset($_POST['submit'])){
+				$data =$_POST;
+				$check_input = $this->check_input_change_pass($data);
+				if($check_input['flag'] ==true){
+					$id = $_SESSION['id_user'];
+					$data_update['lb_password'] = md5($data['pass_new']);
+					if($this->common->update_data('tt_user',$data_update,'id_user',$id)){
+						$data_res[] = 'Đổi mật khẩu thành công!';
+					}else{
+						$data_res[] = 'Đổi mật khẩu bị lỗi!';
+					}
+					$this->pre_message = $data_res;
+				}else{
+					
+					$this->pre_message = $check_input['message'];
+				}
+			}
+			$data = array();
+			$data['message'] = $this->pre_message;
+			$this->_templates['page'] = 'member/change_pass_view';
+			$this->site_library->load($this->_templates['page'],$data);	
+		}else{
+			redirect('/');
+		}
 		
-		$this->_templates['page'] = 'member/change_pass_view';
-		$this->site_library->load($this->_templates['page'],$data);
+		
+	}
+	function check_input_change_pass($data){
+		$flag = true;
+		$error = array();
+		if(trim($data['pass_current'])==""){
+			$flag = false;
+			$error[] = 'Yêu cầu nhập mật khẩu hiện tại!';	
+		}else{
+			$rs = $this->common->check_pass_current(md5(trim($data['pass_current'])));
+			if(count($rs)>0){
+			}else{
+				$flag = false;
+				$error[] = 'Mật khẩu hiện tại không đúng!';
+			}
+		}
+		if(trim($data['pass_new'])==""){
+			$flag = false;
+			$error[] = 'Yêu cầu nhập mật khẩu mới!';
+		}
+		if(trim($data['pass_confirm'])==""){
+			$flag = false;
+			$error[] = 'Yêu cầu nhập lại mật khẩu mới!';
+		}
+		if(trim($data['pass_new'])!=""&&(trim($data['pass_new'])!=trim($data['pass_confirm']))){
+			$flag = false;
+			$error[] = 'Yêu cầu nhập khẩu giống nhau!';
+		}
+		$data_chech['flag'] =  $flag;
+		$data_chech['message'] =  $error;
+		return $data_chech;
 	}
 	function save(){
 		$data_res = array();

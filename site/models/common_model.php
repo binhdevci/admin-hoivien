@@ -128,5 +128,14 @@ class Common_model extends Model{
 		$query = $this->db->query($sql,array($id_member));
 		return $query->row();
 	}
+	function check_pass_current($pass_current=""){
+		$sql="select id_user
+			from 
+			tt_user 
+			where
+			lb_password=?";
+		$query = $this->db->query($sql,array($pass_current));
+		return $query->row();
+	}
 }
 ?>
