@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class Member extends Controller{
 	protected $_templates;
 	protected $_table = 'tt_member';
@@ -104,6 +104,22 @@ class Member extends Controller{
 					//proccess insert data
 					$data_update = $this->build_data($data,1);
 					if($this->common->insert_data($this->_table,$data_update)){
+						if($data['id_person_assign'] >0){
+							$rs = $this->common->get_assign_member($data['id_person_assign']);
+							if(count($rs)>0){
+								if((int)$rs->nb_assign <3){
+									$data_update_assign['nb_assign'] = (int)$rs->nb_assign+1;
+									$this->common->update_data($this->_table,$data_update_assign,$this->_primary_key,$data['id_person_assign']);
+								}
+							}
+						}
+						if($data['id_person_introduce'] >0){
+							$rs = $this->common->get_assign_member($data['id_person_introduce']);
+							if(count($rs)>0){
+								$data_update_introduce['nb_introduce'] = (int)$rs->nb_introduce+1;
+								$this->common->update_data($this->_table,$data_update_introduce,$this->_primary_key,$data['id_person_introduce']);
+							}
+						}
 						$data_res['message'] = 'Thêm thành công!';
 					}else{
 						$data_res['message'] = 'Thêm bị lỗi!';
@@ -128,29 +144,39 @@ class Member extends Controller{
 		}
 		
 		if(trim($data['lb_birthday'])==""){
-			$error[] ="Yêu cầu nhập ngày sinh!";	
+			//$error[] ="Yêu cầu nhập ngày sinh!";	
 		}
 		if(trim($data['lb_address_staying'])==""){
-			$error[] ="Yêu cầu nhập địa chỉ tạm trú!";	
+			//$error[] ="Yêu cầu nhập địa chỉ tạm trú!";	
 		}
 		
 		if(trim($data['lb_phone'])==""){
-			$error[] ="Yêu cầu nhập điện thoại!";	
+			//$error[] ="Yêu cầu nhập điện thoại!";	
 		}
 		if(trim($data['lb_email'])==""){
-			$error[] ="Yêu cầu nhập email!";	
+			//$error[] ="Yêu cầu nhập email!";	
 		}
 		if(trim($data['lb_id_card'])==""){
-			$error[] ="Yêu cầu nhập CMND!";	
+			//$error[] ="Yêu cầu nhập CMND!";	
+		}
+		if($data['id_person_assign'] >0&&$data['id_member'] <1){
+			$rs = $this->common->get_assign_member($data['id_person_assign']);
+			if(count($rs)>0){
+				if((int)$rs->nb_assign <3){
+					
+				}else{
+					$error[] ="Yêu cầu nhập lại người chỉ định!";	
+				}
+			}
 		}
 		if(trim($data['lb_name_account_1'])==""){
-			$error[] ="Yêu cầu nhập tên tài khoản 1!";	
+			//$error[] ="Yêu cầu nhập tên tài khoản 1!";	
 		}
 		if(trim($data['lb_number_account_1'])==""){
-			$error[] ="Yêu cầu nhập số tài khoản 1!";	
+			//$error[] ="Yêu cầu nhập số tài khoản 1!";	
 		}
 		if(trim($data['lb_name_bank_1'])==""){
-			$error[] ="Yêu cầu nhập  tên ngân hàng 1!";	
+			//$error[] ="Yêu cầu nhập  tên ngân hàng 1!";	
 		}
 		if(!empty($error)){
 			$flag = false;
@@ -201,16 +227,20 @@ class Member extends Controller{
 			$id_user = $_SESSION['id_user'];
 		}
 		$dataUpdate["lb_fullname"]=formatInputStr(trim($data["lb_fullname"]));
-		$dataUpdate["lb_birthday"]=formatInputStr(trim($data["lb_birthday"]));
+		if(!empty($data["lb_birthday"])){
+			$dataUpdate["lb_birthday"]=formatInputStr(trim($data["lb_birthday"]));
+		}
 		$dataUpdate["lb_address_resident"] = formatInputStr(trim($data["lb_address_resident"]));
 		$dataUpdate["lb_address_staying"] = formatInputStr(trim($data["lb_address_staying"]));
 		$dataUpdate["lb_phone"] = formatInputStr(trim($data["lb_phone"]));
 		$dataUpdate["lb_email"] = formatInputStr(trim($data["lb_email"]));
 		$dataUpdate["lb_id_card"] = formatInputStr(trim($data["lb_id_card"]));
-		$dataUpdate["dt_range"] = formatInputStr(trim($data["dt_range"]));
+		if(!empty($data["dt_range"])){
+			$dataUpdate["dt_range"] = formatInputStr(trim($data["dt_range"]));
+		}
 		$dataUpdate["lb_place_of_issue"] = formatInputStr(trim($data["lb_place_of_issue"]));
-		$dataUpdate["id_person_introduce"] = formatInputStr(trim($data["id_person_introduce"]));
-		$dataUpdate["id_person_assign"] = formatInputStr(trim($data["id_person_assign"]));
+		
+		$dataUpdate["nb_payment"] = formatInputStr(trim($data["nb_payment"]));
 		$dataUpdate["lb_name_account_1"] = formatInputStr(trim($data["lb_name_account_1"]));
 		$dataUpdate["lb_number_account_1"] = formatInputStr(trim($data["lb_number_account_1"]));
 		$dataUpdate["lb_name_bank_1"] = formatInputStr(trim($data["lb_name_bank_1"]));
@@ -223,6 +253,8 @@ class Member extends Controller{
 		$dataUpdate["bl_active"] = $bl_active;
 		
 		if($flag==1){
+			$dataUpdate["id_person_introduce"] = formatInputStr(trim($data["id_person_introduce"]));
+			$dataUpdate["id_person_assign"] = formatInputStr(trim($data["id_person_assign"]));
 			$rs = $this->common->get_max_member();
 			$dataUpdate["cd_member"] = $this->generate_code($rs);
 			$dataUpdate["dt_create"] = date('Y-m-d H:i:s') ;
@@ -239,9 +271,13 @@ class Member extends Controller{
 		if(isset($_POST['id_member'])&&$_POST['id_member']>0){
 			$id = $_POST['id_member'];
 			$arr_where = array($this->_primary_key=>$id);
-			if($this->common->delete_data($this->_table,$arr_where)){
+			$data_update['bl_delete'] = 1;
+			if($this->common->update_data($this->_table,$data_update,$this->_primary_key,$id)){
 				$flag = true;
 			}
+			// if($this->common->delete_data($this->_table,$arr_where)){
+				// $flag = true;
+			// }
 		}
 		$data_res['flag'] = $flag;
 		echo  json_encode($data_res);
@@ -263,7 +299,7 @@ class Member extends Controller{
 		$array = array();
 		if($total_rows > 0){
 			foreach($result as $row){
-				$member = $this->common->get_person_member($row->id_member);
+				$member = $this->common->get_person_member($row->id_person_introduce);
 				if(!empty($member)){
 					$row->lb_person_introduce = $member->cd_member.' '.$member->lb_fullname;;
 				}else{
@@ -297,7 +333,7 @@ class Member extends Controller{
 		if($total_rows > 0){
 			foreach($result as $row){
 				
-				$member = $this->common->get_person_member($row->id_member);
+				$member = $this->common->get_person_member($row->id_person_introduce);
 				if(!empty($member)){
 					$row->lb_person_introduce = $member->cd_member.' '.$member->lb_fullname;;
 				}else{
@@ -343,9 +379,10 @@ class Member extends Controller{
 			
 			if(isset($_GET['term'])){
 				$query =$_GET['term'];
+				$type =$_GET['type'];
 				$a_json = array();
 				$a_json_row = array();
-				$rs = $this->common->get_friend_search(formatInputStr($query),$per_page);
+				$rs = $this->common->get_friend_search(formatInputStr($query),$per_page,$type);
 				foreach($rs as $row){
 					$a_json_row["id"] = $row->id_member;
 					$a_json_row["value"] = $row->cd_member.' '.$row->lb_fullname;;

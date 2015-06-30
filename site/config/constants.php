@@ -50,4 +50,4 @@ define('CD_LANG','cd_lang' );
 define('PL_NEWS','pl_news' );
 define('ID_NEWS','id_news' );
 define('LB_ALIAS','lb_alias' );
-define('PER_PAGE',3);
+define('PER_PAGE',20);

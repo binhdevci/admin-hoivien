@@ -118,6 +118,14 @@
 													<input id="id_person_assign" type="hidden" />
 												</div>
 											</div>
+											<div class="form-group">
+												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Số lần đóng hụi
+												
+												</label>
+												<div class="col-sm-4 col-xs-9">
+													<input id="nb_payment" type="text"  placeholder="Số lần đóng hụi" class="col-xs-6 col-sm-10" />
+												</div>
+											</div>
 									</div>
 								</div>
 								<!--//Bank account-->
@@ -238,6 +246,9 @@
 													<th >
 														Điện thoại
 													</th>
+													<th >
+														Số lần đóng hụi
+													</th>
 													<th class="hidden-480">
 														Tình trạng
 													</th>
@@ -277,17 +288,37 @@
 	<td><a href="javascript:;;">${lb_fullname}</a></td>
 	<td class="hidden-480">${lb_person_introduce}</td>
 	<td>${lb_phone}</td>
-	<td>{{if $.trim(bl_active)==1}} Được truy cập{{else}} Đã khóa{{/if}}</td>
+	<td>${nb_payment}</td>
+	<td>
+	{{if $.trim(bl_delete)==1}} 
+			
+			<span class="label label-danger ">
+				<i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+				Đã xóa
+			</span>
+
+		{{else}} 
+			{{if $.trim(bl_active)==1}} Được truy cập{{else}} 
+			Đã khóa
+			{{/if}}
+	{{/if}}
+	</td>
 
 	<td>
-		<div class=" btn-group">
-			<button class="btn btn-xs btn-info" onclick="common.load_member_detail(${id_member})">
-					<i class="ace-icon fa fa-pencil bigger-120"></i>
-				</button>
-				<button class="btn btn-xs btn-danger" onclick="common.delete_member(${id_member})" >
-					<i class="ace-icon fa fa-trash-o bigger-120"></i>
-				</button>
-		</div>
+		{{if $.trim(bl_delete)==1}} 
+			
+
+		{{else}} 
+			<div class=" btn-group">
+				<button class="btn btn-xs btn-info" onclick="common.load_member_detail(${id_member})">
+						<i class="ace-icon fa fa-pencil bigger-120"></i>
+					</button>
+					<button class="btn btn-xs btn-danger" onclick="common.delete_member(${id_member})" >
+						<i class="ace-icon fa fa-trash-o bigger-120"></i>
+					</button>
+			</div>
+		{{/if}}
+		
 	</td>
 </tr>
 
