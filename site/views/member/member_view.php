@@ -118,22 +118,7 @@
 													<input id="id_person_assign" type="hidden" />
 												</div>
 											</div>
-<<<<<<< HEAD
-											<!--<div class="form-group">
-=======
-											<div class="form-group">
->>>>>>> 0aad03419e42a8776caa2e2a2ee2cb2199eae06a
-												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Số lần đóng hụi
-												
-												</label>
-												<div class="col-sm-4 col-xs-9">
-													<input id="nb_payment" type="text"  placeholder="Số lần đóng hụi" class="col-xs-6 col-sm-10" />
-												</div>
-<<<<<<< HEAD
-											</div>-->
-=======
-											</div>
->>>>>>> 0aad03419e42a8776caa2e2a2ee2cb2199eae06a
+
 									</div>
 								</div>
 								<!--//Bank account-->
@@ -254,13 +239,7 @@
 													<th >
 														Điện thoại
 													</th>
-<<<<<<< HEAD
-													
-=======
-													<th >
-														Số lần đóng hụi
-													</th>
->>>>>>> 0aad03419e42a8776caa2e2a2ee2cb2199eae06a
+
 													<th class="hidden-480">
 														Tình trạng
 													</th>
@@ -300,10 +279,7 @@
 	<td><a href="javascript:;;">${lb_fullname}</a></td>
 	<td class="hidden-480">${lb_person_introduce}</td>
 	<td>${lb_phone}</td>
-<<<<<<< HEAD
-=======
-	<td>${nb_payment}</td>
->>>>>>> 0aad03419e42a8776caa2e2a2ee2cb2199eae06a
+
 	<td>
 	{{if $.trim(bl_delete)==1}} 
 			
