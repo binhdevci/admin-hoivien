@@ -30,35 +30,49 @@
 											Đổi mật khẩu
 										</h1>
 									</div><!-- /.page-header -->
-									<form class="form-horizontal" role="form">
+									<? if(isset($message)&&!empty($message)){?>
+										<div class="alert alert-success">
+										 <? foreach($message as $k=>$v){?>
+												<strong>
+													<i class="ace-icon fa fa-check"></i>
+												</strong>
+											<? echo $v."<br/>";
+											}?>
+										</div>
+									<?}?>
+										<?php
+												$attributes = array('class' => 'form-horizontal', 'role' => 'form' , 'enctype'=>"multipart/form-data" ,"autocomplete"=>"off");
+												echo form_open(uri_string(), $attributes);
+												?>
 										<div class="form-group">
 											<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Mật khẩu hiện tại </label>
 											<div class="col-sm-9">
-												<input type="password" id="form-field-2" placeholder="Mật khẩu hiện tại" class="col-xs-10 col-sm-5" />
+												<input type="password" name ="pass_current" autocomplete="off" placeholder="Mật khẩu hiện tại" class="col-xs-10 col-sm-5" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Mật khẩu mới </label>
 											<div class="col-sm-9">
-												<input type="password" id="form-field-2" placeholder="Mật khẩu mới" class="col-xs-10 col-sm-5" />
+												<input type="password" name ="pass_new" autocomplete="off" placeholder="Mật khẩu mới" class="col-xs-10 col-sm-5" />
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> Nhập lại mật khẩu mới </label>
 											<div class="col-sm-9">
-												<input type="password" id="form-field-2" placeholder="Nhập lại mật khẩu mới" class="col-xs-10 col-sm-5" />
+												<input type="password" name ="pass_confirm" autocomplete="off" placeholder="Nhập lại mật khẩu mới" class="col-xs-10 col-sm-5" />
 											</div>
 										</div>
+										<input type="hidden" name="submit" value=""/>
 										<div class="form-group">
 											<label class="col-sm-3 control-label no-padding-right" for="form-field-2">  </label>
 											<div class="col-sm-9">
-												<button class="btn btn-info" type="button">
+												<button class="btn btn-info" type="submit">
 													<i class="ace-icon fa fa-check bigger-110"></i>
 													Cập nhật
 												</button>
 											</div>
 										</div>
-									</form>
+									<?=form_close()?>
 								</div><!-- /.page-content-area -->
 								<!-- PAGE CONTENT ENDS -->
 							</div><!-- /.col -->

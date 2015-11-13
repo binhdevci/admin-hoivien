@@ -69,7 +69,7 @@ common ={
 					$('#lb_phone').val(data.detail.lb_phone);
 					$('#lb_email').val(data.detail.lb_email);
 					if(data.detail.bl_active==1){
-						$('#bl_active').attr('checked',true) ;
+						$("#bl_active").prop('checked', true);
 					}
 					
 				}
@@ -317,8 +317,7 @@ common ={
 				data=$.parseJSON(data);
 				if(data.flag ==true){
 					if(data.detail.bl_active==1){
-						
-						$('#bl_active').attr('checked',true) ;
+						$("#bl_active").prop('checked', true);
 					}
 					$('#id_member').val(data.detail.id_member);
 					$('#cd_member').val(data.detail.cd_member);
@@ -334,7 +333,9 @@ common ={
 					$('#id_person_introduce').val(data.detail.id_person_introduce);
 					$('#lb_person_introduce').val(data.detail.lb_person_introduce);
 					$('#lb_person_assign').val(data.detail.lb_person_assign);
+					$("#lb_person_assign").attr("disabled", "disabled");
 					$('#id_person_assign').val(data.detail.id_person_assign);
+					$('#nb_payment').val(data.detail.nb_payment);
 					$('#lb_name_account_1').val(data.detail.lb_name_account_1);
 					$('#lb_number_account_1').val(data.detail.lb_number_account_1);
 					$('#lb_name_bank_1').val(data.detail.lb_name_bank_1);
@@ -399,7 +400,9 @@ common ={
 		$('#id_person_introduce').val('');
 		$('#lb_person_introduce').val('');
 		$('#id_person_assign').val('');
+		$("#lb_person_assign").removeAttr("disabled");
 		$('#lb_person_assign').val('');
+		$('#nb_payment').val('');
 		$('#lb_name_account_1').val('');
 		$('#lb_number_account_1').val('');
 		$('#lb_name_bank_1').val('');
@@ -442,6 +445,7 @@ common ={
 		flag = false;
 		errors = "";
 		id_member = $('#id_member').val();
+		cd_member = $('#cd_member').val();
 		lb_fullname = $('#lb_fullname').val();
 		lb_birthday = $('#lb_birthday').val();
 		lb_address_resident = $('#lb_address_resident').val();
@@ -453,6 +457,7 @@ common ={
 		lb_place_of_issue = $('#lb_place_of_issue').val();
 		id_person_introduce  = $('#id_person_introduce').val();
 		id_person_assign  = $('#id_person_assign').val();
+		nb_payment  = $('#nb_payment').val();
 		lb_name_account_1 = $('#lb_name_account_1').val();
 		lb_number_account_1 = $('#lb_number_account_1').val();
 		lb_name_bank_1 = $('#lb_name_bank_1').val();
@@ -462,33 +467,39 @@ common ={
 		lb_name_bank_2 = $('#lb_name_bank_2').val();
 		lb_bank_branch_2 = $('#lb_bank_branch_2').val();
 		bl_active = $('#bl_active').val();
+		if($.trim(cd_member)==""){
+			errors +="Yêu cầu nhập mã số\n";
+		}
 		if($.trim(lb_fullname)==""){
 			errors +="Yêu cầu nhập họ tên\n";
 		}
 		if($.trim(lb_birthday)==""){
-			errors +="Yêu cầu nhập ngày sinh\n";
+			//errors +="Yêu cầu nhập ngày sinh\n";
 		}
 		
 		if($.trim(lb_address_staying)==""){
-			errors +="Yêu cầu nhập địa chỉ tạm trú\n";
+			//errors +="Yêu cầu nhập địa chỉ tạm trú\n";
 		}
 		if($.trim(lb_phone)==""){
-			errors +="Yêu cầu nhập điện thoại\n";
+			//errors +="Yêu cầu nhập điện thoại\n";
 		}
 		if($.trim(lb_email)==""){
-			errors +="Yêu cầu nhập email\n";
+			//errors +="Yêu cầu nhập email\n";
 		}
 		if($.trim(lb_id_card)==""){
-			errors +="Yêu cầu nhập CMND\n";
+			//errors +="Yêu cầu nhập CMND\n";
+		}
+		if($.trim(id_person_assign)==""||$.trim(id_person_assign)<1){
+			errors +="Yêu cầu nhập người chỉ định\n";
 		}
 		if($.trim(lb_name_account_1)==""){
-			errors +="Yêu cầu nhập tên tài khoản 1\n";
+			//errors +="Yêu cầu nhập tên tài khoản 1\n";
 		}
 		if($.trim(lb_number_account_1)==""){
-			errors +="Yêu cầu nhập số tài khoản 1\n";
+			//errors +="Yêu cầu nhập số tài khoản 1\n";
 		}
 		if($.trim(lb_name_bank_1)==""){
-			errors +="Yêu cầu nhập  tên ngân hàng 1\n";
+			//errors +="Yêu cầu nhập  tên ngân hàng 1\n";
 		}
 		if(errors !=""){
 			alert(errors)
@@ -496,6 +507,7 @@ common ={
 		}
 		obj = {};
 		obj.id_member = id_member;
+		obj.cd_member = cd_member;
 		obj.lb_fullname = lb_fullname;
 		obj.lb_birthday = lb_birthday;
 		obj.lb_address_resident = lb_address_resident;
@@ -507,6 +519,7 @@ common ={
 		obj.lb_place_of_issue = lb_place_of_issue;
 		obj.id_person_introduce = id_person_introduce;
 		obj.id_person_assign = id_person_assign;
+		obj.nb_payment = nb_payment;
 		obj.lb_name_account_1 = lb_name_account_1;
 		obj.lb_number_account_1 = lb_number_account_1;
 		obj.lb_name_bank_1 = lb_name_bank_1;
@@ -532,7 +545,7 @@ common ={
 							return;
 						}
 						term = req.term
-						 $.getJSON(base_url+"find-person.html", {term:term}, function(data) {  
+						 $.getJSON(base_url+"find-person.html", {term:term,type:'introduce'}, function(data) {  
 							 cache_friend[ term ] = data;
 							 var suggestions = [];  
 							 $.each(data, function(i, val){  
@@ -566,7 +579,7 @@ common ={
 							return;
 						}
 						term = req.term
-						 $.getJSON(base_url+"find-person.html", {term:term}, function(data) {  
+						 $.getJSON(base_url+"find-person.html", {term:term,type:'assign'}, function(data) {  
 							 cache_friend[ term ] = data;
 							 var suggestions = [];  
 							 $.each(data, function(i, val){  

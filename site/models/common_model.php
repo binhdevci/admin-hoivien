@@ -108,13 +108,24 @@ class Common_model extends Model{
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
-	function get_friend_search($lb_name='',$per_page =10){
+	function get_friend_search($lb_name='',$per_page =10,$type='introduce'){
 		try{
-			$sql ="select *
-					from tt_member m
-					where 1=1 
-					and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
-					limit ".$per_page;		
+			if($type =='assign'){
+				$sql ="select *
+						from tt_member m
+						where 1=1 
+						and (m.nb_assign < 3  or m.nb_assign is Null)
+						
+						and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
+						limit ".$per_page;		
+			}else{
+				$sql ="select *
+						from tt_member m
+						where 1=1 
+						and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
+						limit ".$per_page;		
+	
+			}
 			$query = $this->db->query($sql);
 			return $query->result();
 		}catch(Exception $ex){
@@ -123,6 +134,22 @@ class Common_model extends Model{
 	}
 	function get_person_member($id_member=0){
 		$sql="	select m.id_member,m.cd_member,m.lb_fullname	from tt_member m
+		where
+		m.id_member=?";
+		$query = $this->db->query($sql,array($id_member));
+		return $query->row();
+	}
+	function check_pass_current($pass_current=""){
+		$sql="select id_user
+			from 
+			tt_user 
+			where
+			lb_password=?";
+		$query = $this->db->query($sql,array($pass_current));
+		return $query->row();
+	}
+	function get_assign_member($id_member=0){
+		$sql="	select m.id_member,m.cd_member,m.lb_fullname,m.nb_assign,m.nb_introduce	from tt_member m
 		where
 		m.id_member=?";
 		$query = $this->db->query($sql,array($id_member));
