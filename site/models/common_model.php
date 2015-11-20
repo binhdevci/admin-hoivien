@@ -37,7 +37,26 @@ class Common_model extends Model{
 				$this->db->order_by($lb_primary_key,'DESC');
 		return $this->db->get($lb_table,$num,$offset)->result();
 	}
-	
+	function get_all_paging_payment($lb_table,$lb_primary_key,$num,$offset,$arr_search=array(),$arr_order=array()){
+			if(isset($arr_search['cd_member'])&&trim($arr_search['cd_member'])!=''){
+                $this->db->like('cd_member',$arr_search['cd_member']);
+			}
+			if(isset($arr_search['lb_fullname'])&&trim($arr_search['lb_fullname'])!=''){
+					$this->db->like('lb_fullname',$arr_search['lb_fullname']);
+			}
+			if(isset($arr_search['dt_from'])&&trim($arr_search['dt_from'])!=''){
+					$this->db->where('dt_receive >=',$arr_search['dt_from']);
+			}
+			if(isset($arr_search['dt_to'])&&trim($arr_search['dt_to'])!=''){
+					$this->db->where('dt_receive <=',$arr_search['dt_to']);
+			}
+			if(isset($arr_order['order_key'])&&$arr_order['order_key']!=''){
+				$this->db->order_by($arr_order['order_key'],$arr_order['order_type']);
+			}
+			else
+				$this->db->order_by($lb_primary_key,'DESC');
+		return $this->db->get($lb_table,$num,$offset)->result();
+	}
 
 	function get_parent($lb_table_foreign){
 		return $this->db->get($lb_table_foreign)->result();
@@ -61,7 +80,24 @@ class Common_model extends Model{
 		$query = $this->db->get($lb_table);
 		return $query->num_rows();
 	}
-	
+	function get_num_rows_payment($lb_table,$arr_search=array()){
+        /*Begin search*/
+        if(isset($arr_search['cd_member'])&&trim($arr_search['cd_member'])!=''){
+                $this->db->like('cd_member',$arr_search['cd_member']);
+        }
+		if(isset($arr_search['lb_fullname'])&&trim($arr_search['lb_fullname'])!=''){
+                $this->db->like('lb_fullname',$arr_search['lb_fullname']);
+        }
+		if(isset($arr_search['dt_from'])&&trim($arr_search['dt_from'])!=''){
+                $this->db->where('dt_receive >=',$arr_search['dt_from']);
+        }
+		if(isset($arr_search['dt_to'])&&trim($arr_search['dt_to'])!=''){
+                $this->db->where('dt_receive <=',$arr_search['dt_to']);
+        }
+        /*End search*/
+		$query = $this->db->get($lb_table);
+		return $query->num_rows();
+	}
 	function get_item($lb_table,$lb_primary_key,$id){
 		 $this->db->where($lb_primary_key,$id);
 		 $query = $this->db->get($lb_table);
@@ -108,13 +144,24 @@ class Common_model extends Model{
 		$query = $this->db->query($sql);
 		return $query->row();
 	}
-	function get_friend_search($lb_name='',$per_page =10){
+	function get_friend_search($lb_name='',$per_page =10,$type='introduce'){
 		try{
-			$sql ="select *
-					from tt_member m
-					where 1=1 
-					and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
-					limit ".$per_page;		
+			if($type =='assign'){
+				$sql ="select *
+						from tt_member m
+						where 1=1 
+						and (m.nb_assign < 3  or m.nb_assign is Null)
+						
+						and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
+						limit ".$per_page;		
+			}else{
+				$sql ="select *
+						from tt_member m
+						where 1=1 
+						and (m.lb_fullname like '%".$lb_name."%' or m.cd_member like '%".$lb_name."%' )
+						limit ".$per_page;		
+	
+			}
 			$query = $this->db->query($sql);
 			return $query->result();
 		}catch(Exception $ex){
@@ -127,6 +174,45 @@ class Common_model extends Model{
 		m.id_member=?";
 		$query = $this->db->query($sql,array($id_member));
 		return $query->row();
+	}
+	function check_pass_current($pass_current=""){
+		$sql="select id_user
+			from 
+			tt_user 
+			where
+			lb_password=?";
+		$query = $this->db->query($sql,array($pass_current));
+		return $query->row();
+	}
+	function get_assign_member($id_member=0){
+		$sql="	select m.id_member,m.cd_member,m.lb_fullname,m.nb_assign,m.nb_introduce	from tt_member m
+		where
+		m.id_member=?";
+		$query = $this->db->query($sql,array($id_member));
+		return $query->row();
+	}
+	function detail_payment($id_payment){
+		$sql="
+		SELECT
+		p.id_payment,
+		p.id_member as id_member_main,
+		p.cd_member as cd_member_main,
+		p.lb_fullname as lb_fullname_main  ,
+		p.lb_fullname_receive,
+		p.nb_amount as nb_amount_main,
+		d.id_payment_detail,
+		d.id_payment,
+		d.id_member,
+		d.cd_member,
+		d.lb_fullname,
+		d.nb_amount
+		FROM
+		tt_payment  p
+		INNER JOIN tt_payment_detail d ON d.id_payment = p.id_payment
+		where
+		p.id_payment =?";
+		$query = $this->db->query($sql,array($id_payment));
+		return $query->result();
 	}
 }
 ?>

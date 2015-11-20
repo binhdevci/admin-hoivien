@@ -48,12 +48,16 @@ $route['changepass.html'] = "member/changepass";
 $route['member.html'] = "member";
 $route['member-save.html'] = "member/save";
 $route['member-(:num).html'] = "member/edit/$1";
+$route['default-label-member-(:num).html'] = "member/set_label/$1";
 $route['member-delete.html'] = "member/del";
 $route['load-grid-member.html'] = "member/load_grid";
 $route['load-grid-member-paging.html'] = "member/load_grid_paging";
+$route['load-grid-payment-member.html'] = "payment/load_grid";
+$route['load-grid-payment-member-paging.html'] = "payment/load_grid_paging";
 $route['find-person.html(:any)'] = "member/find_member";
 /* route payment */
 $route['payment.html'] = "payment";
+$route['payment-detail-(:num).html'] = "payment/detail/$1";
 /*load grid user*/
 $route['user.html'] = "user";
 $route['user-save.html'] = "user/save";

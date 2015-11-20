@@ -1,6 +1,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>Hệ thống quản trị Thiện Tâm</title>
+		<title>Hệ thống quản trị hội viên</title>
 
 		<meta name="description" content="" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -22,7 +22,7 @@
 		<![endif]-->
 		<link rel="stylesheet" href="<?php echo base_url()?>templates/assets/css/ace-skins.min.css" />
 		<link rel="stylesheet" href="<?php echo base_url()?>templates/assets/css/ace-rtl.min.css" />
-
+		<link rel="stylesheet" href="<?php echo base_url()?>templates/assets/css/style.css" id="custom-ace-style" /> 
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="<?php echo base_url()?>templates/assets/css/ace-ie.min.css" />
 		<![endif]-->

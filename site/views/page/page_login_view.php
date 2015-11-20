@@ -1,3 +1,8 @@
+	<script type="text/javascript">
+		window.onload = function() {
+		  var input = document.getElementById("username").focus();
+		}
+	</script>
 	<div class="row" style="padding-top:150px;">
 					<div class="col-sm-10 col-sm-offset-1">
 						<div class="login-container">
@@ -40,7 +45,7 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input name ="lb_username" type="text" class="form-control" placeholder="Username" />
+															<input id="username" name ="lb_username" type="text" class="form-control" placeholder="Username" />
 															<i class="ace-icon fa fa-user"></i>
 														</span>
 													</label>

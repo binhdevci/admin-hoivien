@@ -33,7 +33,7 @@
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Mã số</label>
 											<div class="col-sm-8 col-xs-9">
-												<input id="cd_member" type="text"  class="col-xs-6 col-sm-10" disabled="disabled" />
+												<input id="cd_member" type="text"  class="col-xs-6 col-sm-10"  />
 											</div>
 										</div>
 										<div class="form-group">
@@ -118,6 +118,14 @@
 													<input id="id_person_assign" type="hidden" />
 												</div>
 											</div>
+											<!--<div class="form-group">
+												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Số lần đóng hụi
+												
+												</label>
+												<div class="col-sm-4 col-xs-9">
+													<input id="nb_payment" type="text"  placeholder="Số lần đóng hụi" class="col-xs-6 col-sm-10" />
+												</div>
+											</div>-->
 									</div>
 								</div>
 								<!--//Bank account-->
@@ -130,7 +138,7 @@
 										</div><!-- /.page-header -->
 									</div>
 									<div class="col-sm-6 col-xs-12">
-									<label class="col-sm-12 col-xs-12 title-bankaccount-info" for="form-field-1"> Tài khoản hưởng thụ thứ 1</label>
+									<label class="col-sm-12 col-xs-12 title-bankaccount-info" for="form-field-1"> Tài khoản hưởng thụ </label>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Tên chủ tài khoản</label>
 											<div class="col-sm-8 col-xs-9">
@@ -156,7 +164,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="col-sm-6 col-xs-12">
+									<!--<div class="col-sm-6 col-xs-12">
 									<label class="col-sm-12 col-xs-12 title-bankaccount-info" for="form-field-1"> Tài khoản hưởng thụ thứ 2</label>
 										<div class="form-group">
 											<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Tên chủ tài khoản</label>
@@ -182,7 +190,7 @@
 												<input id="lb_bank_branch_2" type="text"  placeholder="Chi nhánh" class="col-xs-6 col-sm-10" />
 											</div>
 										</div>
-									</div>
+									</div>-->
 								</div>
 								<!--//End bank account-->
 								<div class="space-10"></div>
@@ -238,6 +246,7 @@
 													<th >
 														Điện thoại
 													</th>
+													
 													<th class="hidden-480">
 														Tình trạng
 													</th>
@@ -277,17 +286,46 @@
 	<td><a href="javascript:;;">${lb_fullname}</a></td>
 	<td class="hidden-480">${lb_person_introduce}</td>
 	<td>${lb_phone}</td>
-	<td>{{if $.trim(bl_active)==1}} Được truy cập{{else}} Đã khóa{{/if}}</td>
+	<td>
+	{{if $.trim(bl_delete)==1}} 
+			
+			<span class="label label-danger ">
+				<i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+				Đã xóa
+			</span>
+
+		{{else}} 
+			{{if $.trim(bl_active)==1}} Được truy cập{{else}} 
+			Đã khóa
+			{{/if}}
+	{{/if}}
+	</td>
 
 	<td>
-		<div class=" btn-group">
-			<button class="btn btn-xs btn-info" onclick="common.load_member_detail(${id_member})">
-					<i class="ace-icon fa fa-pencil bigger-120"></i>
+		{{if $.trim(bl_delete)==1}} 
+			
+
+		{{else}} 
+			<div class=" btn-group">
+				{{if $.trim(bl_default_label)==1}} 
+				<button class="btn btn-xs  btn-success " onclick="common.set_default_label(${id_member})">
+						<i id="default_label-${id_member}" class="ace-icon fa fa-fire  bigger-120"></i>
 				</button>
-				<button class="btn btn-xs btn-danger" onclick="common.delete_member(${id_member})" >
-					<i class="ace-icon fa fa-trash-o bigger-120"></i>
+				{{else}} 
+				<button class="btn btn-xs btn-success" onclick="common.set_default_label(${id_member})">
+						<i id="default_label-${id_member}" class="ace-icon fa 	fa-leaf  bigger-120"></i>
 				</button>
-		</div>
+				{{/if}}
+				<input type="hidden" id="bl_default_label-${id_member}" value="${bl_default_label}"/>
+				<button class="btn btn-xs btn-info" onclick="common.load_member_detail(${id_member})">
+						<i class="ace-icon fa fa-pencil bigger-120"></i>
+					</button>
+					<button class="btn btn-xs btn-danger" onclick="common.delete_member(${id_member})" >
+						<i class="ace-icon fa fa-trash-o bigger-120"></i>
+					</button>
+			</div>
+		{{/if}}
+		
 	</td>
 </tr>
 
