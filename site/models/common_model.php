@@ -191,6 +191,7 @@ class Common_model extends Model{
 		$query = $this->db->query($sql,array($id_member));
 		return $query->row();
 	}
+<<<<<<< HEAD
 	function detail_payment($id_payment){
 		$sql="
 		SELECT
@@ -214,5 +215,7 @@ class Common_model extends Model{
 		$query = $this->db->query($sql,array($id_payment));
 		return $query->result();
 	}
+=======
+>>>>>>> 56ecadedf47e4db0ff02e31bd8fd0c574f7f04e2
 }
 ?>

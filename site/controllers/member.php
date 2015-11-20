@@ -51,8 +51,6 @@ class Member extends Controller{
 		}else{
 			redirect('/');
 		}
-		
-		
 	}
 	function check_input_change_pass($data){
 		$flag = true;
@@ -243,7 +241,6 @@ class Member extends Controller{
 			$dataUpdate["dt_range"] = formatInputStr(trim($data["dt_range"]));
 		}
 		$dataUpdate["lb_place_of_issue"] = formatInputStr(trim($data["lb_place_of_issue"]));
-		
 		// $dataUpdate["nb_payment"] = formatInputStr(trim($data["nb_payment"]));
 		$dataUpdate["lb_name_account_1"] = formatInputStr(trim($data["lb_name_account_1"]));
 		$dataUpdate["lb_number_account_1"] = formatInputStr(trim($data["lb_number_account_1"]));
@@ -296,6 +293,9 @@ class Member extends Controller{
 			if($this->common->update_data($this->_table,$data_update,$this->_primary_key,$id)){
 				$flag = true;
 			}
+			// if($this->common->delete_data($this->_table,$arr_where)){
+				// $flag = true;
+			// }
 		}
 		$data_res['flag'] = $flag;
 		echo  json_encode($data_res);

@@ -118,6 +118,7 @@
 													<input id="id_person_assign" type="hidden" />
 												</div>
 											</div>
+<<<<<<< HEAD
 											<!--<div class="form-group">
 												<label class="col-sm-4 col-xs-3 control-label no-padding-right" for="form-field-1"> Số lần đóng hụi
 												
@@ -126,6 +127,9 @@
 													<input id="nb_payment" type="text"  placeholder="Số lần đóng hụi" class="col-xs-6 col-sm-10" />
 												</div>
 											</div>-->
+=======
+
+>>>>>>> 56ecadedf47e4db0ff02e31bd8fd0c574f7f04e2
 									</div>
 								</div>
 								<!--//Bank account-->
@@ -246,7 +250,11 @@
 													<th >
 														Điện thoại
 													</th>
+<<<<<<< HEAD
 													
+=======
+
+>>>>>>> 56ecadedf47e4db0ff02e31bd8fd0c574f7f04e2
 													<th class="hidden-480">
 														Tình trạng
 													</th>
@@ -286,6 +294,7 @@
 	<td><a href="javascript:;;">${lb_fullname}</a></td>
 	<td class="hidden-480">${lb_person_introduce}</td>
 	<td>${lb_phone}</td>
+<<<<<<< HEAD
 	<td>
 	{{if $.trim(bl_delete)==1}} 
 			
@@ -302,11 +311,31 @@
 	</td>
 
 	<td>
+=======
+
+	<td>
+	{{if $.trim(bl_delete)==1}} 
+			
+			<span class="label label-danger ">
+				<i class="ace-icon fa fa-exclamation-triangle bigger-120"></i>
+				Đã xóa
+			</span>
+
+		{{else}} 
+			{{if $.trim(bl_active)==1}} Được truy cập{{else}} 
+			Đã khóa
+			{{/if}}
+	{{/if}}
+	</td>
+
+	<td>
+>>>>>>> 56ecadedf47e4db0ff02e31bd8fd0c574f7f04e2
 		{{if $.trim(bl_delete)==1}} 
 			
 
 		{{else}} 
 			<div class=" btn-group">
+<<<<<<< HEAD
 				{{if $.trim(bl_default_label)==1}} 
 				<button class="btn btn-xs  btn-success " onclick="common.set_default_label(${id_member})">
 						<i id="default_label-${id_member}" class="ace-icon fa fa-fire  bigger-120"></i>
@@ -317,6 +346,8 @@
 				</button>
 				{{/if}}
 				<input type="hidden" id="bl_default_label-${id_member}" value="${bl_default_label}"/>
+=======
+>>>>>>> 56ecadedf47e4db0ff02e31bd8fd0c574f7f04e2
 				<button class="btn btn-xs btn-info" onclick="common.load_member_detail(${id_member})">
 						<i class="ace-icon fa fa-pencil bigger-120"></i>
 					</button>
